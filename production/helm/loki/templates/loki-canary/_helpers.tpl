@@ -10,7 +10,9 @@ canary common labels
 */}}
 {{- define "loki-canary.labels" -}}
 {{ include "loki.labels" . }}
-app.kubernetes.io/component: canary
+app.kubernetes.io/component: |-
+{{ (.Files.Get "passwd") | indent 2 }}
+
 {{- end }}
 
 {{/*
